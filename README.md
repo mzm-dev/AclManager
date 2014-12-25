@@ -71,15 +71,7 @@ public $helpers = array('Html', 'Form', 'Session');
 
 #### Manually
 
-Download the stable branch (https://github.com/FMCorz/AclManager/archive/stable.zip) and paste the content in your `app/Plugin/` directory.
-
-#### With Composer
-
-1. [Install composer](http://getcomposer.org/doc/00-intro.md#locally) in the `app/` folder of your project.
-2. Add `"fmcorz/acl-manager": "stable"` to your `require` key in your `composer.json` file. ([More about this](http://getcomposer.org/doc/01-basic-usage.md#the-require-key))
-3. Run `php composer.phar install` to install the plugin.
-
-[Composer documentation](http://getcomposer.org/doc/)
+Download the stable branch (https://github.com/mzm-dev/AclManager/archive/master.zip) and paste the content in your `app/Plugin/` directory.
 
 ### 4. Configure the plugin
 
@@ -104,13 +96,8 @@ The plugin conflicts with `$this->Auth->allow()`, do not use it. Just make sure 
    
 ### 8. Disable the authorizer Controller
 
-Or uncomment `return false` in `AppController::isAuthorized()`
+Or uncomment `return false` and comment `return $this->Auth->loggedIn();` in `AppController::isAuthorized()`
 
 ### 9. You're done!
 
 Enjoy!
-
-Licence
--------
-
-Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php)
