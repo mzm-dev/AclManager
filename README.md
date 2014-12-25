@@ -32,46 +32,39 @@ See: [CakePHP: Simple ACL Controlled Application](http://book.cakephp.org/2.0/en
 It should look something like this:
 
 ```php
-var $components = array('Auth', 'Acl', 'Session');
-
-function beforeFilter() {
-    //Configure AuthComponent
-    $this->Auth->authorize = array(
-        'Controller',
-        'Actions' => array('actionPath' => 'controllers')
-    );
-    $this->Auth->authenticate = array(
-        'Form' => array(
-            'fields' => array(
-                'username' => 'login',
-                'password' => 'password'
-            )
+public $helpers = array('Html', 'Form', 'Session');
+    public $components = array(
+        'Session', 'Acl',
+        'Auth' => array(
+            'authorize' => array(
+                'Controller',
+                'Actions' => array('actionPath' => 'controllers')
+            ),
+            'loginRedirect' => array(
+                'controller' => 'posts',
+                'action' => 'index'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'pages',
+                'action' => 'display',
+                'home'
+            ),
+            'authenticate' => array(
+                'Form' => array(
+                    'fields' => array(
+                        'username' => 'username', //Default is 'username' in the userModel
+                        'password' => 'password'  //Default is 'password' in the userModel
+                    )
+                )
+            ),
+            'authError' => "Sorry, you're not allowed to do that."
         )
     );
-    $this->Auth->loginAction = array(
-        'controller' => 'users',
-        'action' => 'login',
-        'admin' => false,
-        'plugin' => false
-    );
-    $this->Auth->logoutRedirect = array(
-        'controller' => 'users',
-        'action' => 'login',
-        'admin' => false,
-        'plugin' => false
-    );
-    $this->Auth->loginRedirect = array(
-        'controller' => 'products',
-        'action' => 'index',
-        'admin' => false,
-        'plugin' => false
-    );
-}
 
-function isAuthorized($user) {
-    // return false;
-    return $this->Auth->loggedIn();
-}
+    function isAuthorized($user) {
+        #return false; 
+        return $this->Auth->loggedIn(); //disable after final setup
+    }
 ```
 
 ### 3. Download AclManager
