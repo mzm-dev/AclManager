@@ -17,8 +17,13 @@ This plugins allows you to easily manage your permissions in CakePHP 2.x through
 
 ### 1. Set up your Acl environment
 
-   * Install SQL tables through Cake Console
-   * parentNode() method on your requester models
+* Install SQL tables through Cake Console
+ 
+ ```code
+ ./Console/cake acl initdb
+ ```
+ 
+* parentNode() method on your requester models
 
 See: [CakePHP: Simple ACL Controlled Application](http://book.cakephp.org/2.0/en/tutorials-and-examples/simple-acl-controlled-application/simple-acl-controlled-application.html)
 
